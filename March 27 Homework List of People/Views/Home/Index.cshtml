@@ -1,0 +1,31 @@
+﻿@using March_27_Homework_List_of_People.Models
+@model HomeViewModel
+
+@if (!String.IsNullOrEmpty(Model.Message))
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        @Model.Message
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <a href="/home/add" class="btn btn-success">Add People</a>
+        <table class="table table-hover table-bordered" style="margin-top: 20px;">
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Age</th>
+            </tr>
+            @foreach(var p in Model.People)
+            {
+                <tr>
+                    <td>@p.FirstName</td>
+                    <td>@p.LastName</td>
+                    <td>@p.Age</td>
+                </tr>
+            }  
+        </table>
+    </div>
+</div>
