@@ -1,6 +1,5 @@
 ﻿$(() => {
     let index = 0;
-    const isValidNum = value => !Number.isNaN(Number(value));
 
     $("form").on('input', function () {
         ensureFormValidity();
@@ -21,17 +20,22 @@
           <input class="form-control age-field" type="text" name="people[${index}].age" placeholder="Age" />
         </div>
       </div>`;
+
         $("#ppl-rows").append(newPersonRow);
         ensureFormValidity();
     });
 
+    const isValidNum = value => !Number.isNaN(Number(value));
+
     function ensureFormValidity() {
-        const firstName = $('.firstname-field').val();
-        const lastName = $('.lastname-field').val();
-        const age = $('.age-field').val();
 
-        const isValid = firstName && lastName && age && isValidNum(age);
+        $(".person-row").each(function () {
+            const firstName = $(this).find('.firstname-field').val();
+            const lastName = $(this).find('.lastname-field').val();
+            const age = $(this).find('.age-field').val();
 
-        $(".btn-primary").prop('disabled', !isValid);
+            const isValid = firstName && lastName && age && isValidNum(age);
+            $(".btn-primary").prop('disabled', !isValid);
+        });
     }
 });
