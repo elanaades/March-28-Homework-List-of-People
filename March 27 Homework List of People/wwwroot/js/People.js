@@ -1,13 +1,11 @@
 ﻿$(() => {
-    let index = 0;
+    let index = 1;
 
     $("form").on('input', function () {
         ensureFormValidity();
     });
 
     $("#add-rows").on('click', function () {
-
-        index++;
         let newPersonRow =
             `<div class="row person-row" style="margin-bottom: 10px;">
         <div class="col-md-4">
@@ -23,7 +21,9 @@
          </div>`;
 
         $("#ppl-rows").append(newPersonRow);
+        index++;
         ensureFormValidity();
+
     });
 
     $("#ppl-rows").on('click', '.btn-close', function () {
@@ -46,6 +46,10 @@
 
             newIndex++;
         });
+
+        if (newIndex == 0) {
+            index = 0;
+        }
     }
     
 
